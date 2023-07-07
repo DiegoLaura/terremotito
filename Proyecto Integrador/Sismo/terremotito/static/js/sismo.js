@@ -1,6 +1,6 @@
 const getOptionChart = async () => {
     try {
-        const response = await fetch("http://192.168.1.13:8000/get_chart/");
+        const response = await fetch("http://3.224.170.103:8000/get_chart/");
         return await response.json();
     } catch (ex) {
         alert(ex);

@@ -16,6 +16,35 @@ def on_message(client, userdata, msg):
     #Recibe el mensaje 
     payload = msg.payload.decode("utf-8")
     print("Mensaje recibido: " + payload)
+    
+    try:
+        dato = int(payload)
+        insertar_movimiento(dato)
+    
+    except ValueError:
+        print("no funciona")
+
+def insertar_movimiento(dato):
+    connection = pymysql.connect(
+        host='localhost',
+        user='root',
+        password='12345',
+        database='terremotito'
+    )
+    query = f"SELECT * FROM terremotito_intensidad WHERE movimiento={dato}"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchone()
+        
+    if result: 
+        print("el dato ya esta dentro")
+    else:
+        query = f"INSERT INTO terremotito_intensidad (tiempo, movimiento) VALUES (NOW(), {dato})"
+        with connection.cursor() as cursor:
+            cursor.execute(query)
+            connection.commit()
+        print("Registrado")
+    connection.close()
 
 # Configuración del cliente MQTT
 mqtt_client = mqtt.Client()

@@ -1,7 +1,9 @@
 from random import randrange
 
 from django.http.response import JsonResponse
+from .models import *
 from django.shortcuts import render
+
 
 
 def index(request):

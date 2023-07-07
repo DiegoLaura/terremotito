@@ -10,7 +10,7 @@ class Empresa(models.Model):
         return self.nombre
     
 class Intensidad(models.Model):
-    tiempo = models.IntegerField(default=0)
+    tiempo = models.DateTimeField("date published")
     movimiento = models.IntegerField(default=0)
 
     def __str__(self):
