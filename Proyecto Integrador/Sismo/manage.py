@@ -2,7 +2,11 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import subprocess
 
+ruta_mqtt = os.path.join(os.path.dirname(__file__), 'terremotito/mqtt.py')
+
+subprocess.Popen(['python', ruta_mqtt])
 
 def main():
     """Run administrative tasks."""
